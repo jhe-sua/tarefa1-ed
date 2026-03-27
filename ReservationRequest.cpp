@@ -26,9 +26,12 @@ public:
         this->student_count = student_count;
     };
     //destrutor
-    ~ReservationRequest() = default;
-        
-    int getStartHour();
+    ~ReservationRequest();
+
+    int getStartHour()
+    {
+	return 0;
+    }
     int getEndHour();
     std::string getCourseName();
     std::string getWeekday();
