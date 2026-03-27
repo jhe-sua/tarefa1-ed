@@ -1,6 +1,40 @@
 #include <iostream>
 #include "ReservationRequest.hpp"
 
+struct Reserva
+{
+    std::string course_name;
+    std::string weekday;
+    int start_hour;
+    int end_hour;
+    int student_count;
+};
+
+class Semana
+{
+    private: 
+        bool semana[5][15];
+
+    public:
+        Semana()
+        {
+            for (int i = 0; i < 15; i ++)
+            {
+                for(int j = 0; j < 15; j++)
+                {
+                    this->semana[i][j] = false;
+                };
+            };
+        };
+        
+};
+
+struct Sala
+{
+    Reserva* reservas;
+    int cap_max;
+};
+
 class ReservationSystem {
 
 private:
