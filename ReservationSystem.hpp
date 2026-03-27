@@ -39,13 +39,17 @@ class Semana
         
 };
 
-struct Sala
+class Sala
 {   
-    int cap_max;
-    int n_reservas = 0;
-    int nmax_reservas = 14;
-    Reserva reservas[14];
-    Semana semana;
+    public:
+        int cap_max;
+        int n_reservas = 0;
+        int nmax_reservas = 14;
+        Reserva reservas[14];
+        Semana semana;
+
+        Sala();
+         
 };
 
 class ReservationSystem {

@@ -2,7 +2,6 @@
 #include "ReservationRequest.hpp"
 #include "ReservationSystem.hpp"
 
-
 // Implementando reserva ======================================================
 Reserva::Reserva()
 {
@@ -67,6 +66,11 @@ void Semana::preencherHorario(int dia_semana, int hora_inicio, int hora_fim)
         this->setHour(dia_semana, j, true);
     }
 }
+
+
+// Implementando sala =========================================================
+
+
         
 // implementando ReservationSystem ============================================
 
