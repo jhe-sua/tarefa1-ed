@@ -25,19 +25,32 @@ public:
         this->end_hour = end_hour;
         this->student_count = student_count;
     };
+
     //destrutor
-    ~ReservationRequest();
-///////////////////////////////////////////////////////////////////////////////
+    ~ReservationRequest() {};
+
     int getStartHour()
     {
-	return 0;
+	    return start_hour;
     }
-///////////////////////////////////////////////////////////////////////////////
-    int getEndHour();
-///////////////////////////////////////////////////////////////////////////////
-    std::string getCourseName();
-///////////////////////////////////////////////////////////////////////////////
-    std::string getWeekday();
-///////////////////////////////////////////////////////////////////////////////
-    int getStudentCount();
+
+    int getEndHour()
+    {
+        return end_hour;
+    };
+
+    std::string getCourseName()
+    {
+        return course_name;
+    };
+
+    std::string getWeekday()
+    {
+        return weekday;
+    };
+
+    int getStudentCount()
+    {
+        return student_count;
+    };
 };

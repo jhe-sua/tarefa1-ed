@@ -1,5 +1,5 @@
-#include "ReservationSystem"
-#include "ReservationRequest"
+#include "ReservationSystem.hpp"
+#include "ReservationRequest.hpp"
 
 int main()
 {   
