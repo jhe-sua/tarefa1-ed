@@ -21,7 +21,10 @@ public:
     //destrutor
     ~ReservationRequest();
 
-    int getStartHour();
+    int getStartHour()
+    {
+	return 0;
+    }
     int getEndHour();
     std::string getCourseName();
     std::string getWeekday();
