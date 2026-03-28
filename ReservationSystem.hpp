@@ -6,7 +6,7 @@
 
 using namespace std;
 
-
+// Reserva ====================================================================
 class Reserva
 {
     private:
@@ -19,8 +19,40 @@ class Reserva
     public:
         Reserva();
         Reserva(ReservationRequest request);
+        
+        //getters
+        string getCourseName();
+        string getWeekday();
+        int getNumWeekDay();
+        int getStartHour();
+        int getEndHour();
+        int getStudentCount();
 };
 
+
+// ArrReservaDinamico =========================================================
+class ArrReservaDinamico
+{
+private:
+    int capacidade;
+    int tamanho;
+    Reserva* dados;
+
+public:
+    ArrReservaDinamico(int capacidade);
+    ArrReservaDinamico(const ArrReservaDinamico& other);
+    ArrReservaDinamico& operator=(const ArrReservaDinamico& other);
+    ~ArrReservaDinamico();
+    void resize(int nova_capacidade);
+    void append(Reserva value);
+    void remove(int index);
+    void sort();
+    Reserva get(int index);
+    int getTamanho();
+};
+
+
+// Semana =====================================================================
 class Semana
 {
     private: 
@@ -35,31 +67,43 @@ class Semana
 
         bool horarioDisponivel(int dia_semana, int hora_inicio, int hora_fim);
 
-        void preencherHorario(int dia_semana, int hora_inicio, int hora_fim);
+        void preencherHorario(int dia_semana, int hora_inicio, int hora_fim, bool value);
+
         
 };
 
+// Sala========================================================================
 class Sala
 {   
-    public:
+    private:
         int cap_max;
-        int n_reservas = 0;
-        int nmax_reservas = 14;
-        Reserva reservas[14];
+        int index;
+        ArrReservaDinamico arr_reservas = ArrReservaDinamico(14);
         Semana semana;
 
+    public:
         Sala();
+        Sala(int cap_max, int index);
+
+        Reserva getReserva(int index); 
+        bool reservar(Reserva reserva, int dia_semana, int inicio, int fim);
+        bool remover(std::string course_name);
+
+        int getCap_max(); 
+        void setCap_max(int n); 
+
+        void print();
+
          
 };
 
+// ReservationSystem ==========================================================
 class ReservationSystem {
 
 private:
     int room_count;
     int* room_capacities;
     Sala* salas;
-
-    int dia_para_index(string weekday);
 
     // Estruturas internas escolhidas pelos alunos
     // para armazenar e gerenciar as reservas, os horários, ...
