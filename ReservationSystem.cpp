@@ -141,7 +141,8 @@ void ArrReservaDinamico::sort()
     int minHora = 0, maxhora = 23;
     int range = maxhora - minHora + 1;
     
-    int count[range] = {0};
+
+    int* count = new int[range]();
     Reserva output[this->tamanho];
 
     // Calculamos a frequencia
@@ -151,7 +152,7 @@ void ArrReservaDinamico::sort()
     }
 
     // Calcular distribuição acumulada
-    for(int i = 1; i < this->tamanho; i++)
+    for(int i = 1; i < range; i++)
     {
         count[i] += count[i-1];
     }
@@ -164,6 +165,7 @@ void ArrReservaDinamico::sort()
         output[pos] = this->dados[i];
         count[hora]--;
     }
+    delete[] count;
 
     for(int i = 0; i < this->tamanho; i++)
     {
@@ -295,23 +297,22 @@ void Sala::print()
     string dias_da_semana[] = {"segunda", "terca", "quarta", "quinta", "sexta", "sabado", "domingo"};
     bool dia_da_semana_printado[7] = {false};
 
-    cout << "Room " << this->index << endl;
-    for (int i = 0; i < this->arr_reservas.getTamanho(); i++)
-    {   
-        for (int j = 0; j < 7; j++)
-        {
-            if (this->arr_reservas.get(i).getWeekday() == dias_da_semana[j])
+    cout << "Room " << this->index + 1 << endl;
+    for (int j = 0; j < 7; j++)
+    {
+        for (int i = 0; i < this->arr_reservas.getTamanho(); i++)
+        {   
+            Reserva reserva =this->arr_reservas.get(i);
+            if (reserva.getWeekday() == dias_da_semana[j])
             {
                 if (!dia_da_semana_printado[j])
                 {
-                    cout << dias_da_semana[j] << ":"
+                    cout << dias_da_semana[j] << ":" << endl;
+                    dia_da_semana_printado[j] = true;
                 }
+                cout << reserva.getStartHour() << "h~" << reserva.getEndHour() << "h: "<< reserva.getCourseName() << endl;
             }
         }
-        Reserva reserva =this->arr_reservas.get(i);
-        cout << reserva.getWeekday() << ":" << endl;
-        cout << reserva.getStartHour() << "h~" << reserva.getEndHour() << "h: "<< reserva.getCourseName() << endl;
-
     }
 }
 
@@ -381,7 +382,8 @@ bool ReservationSystem::cancel(std::string course_name)
 void ReservationSystem::printSchedule()
 {
     for(int i = 0; i < this->room_count; i++)
-    {
+    {   
         this->salas[i].print();
+        cout << endl;
     }
 };
