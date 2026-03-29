@@ -143,7 +143,7 @@ void ArrReservaDinamico::sort()
     
 
     int* count = new int[range]();
-    Reserva output[this->tamanho];
+    Reserva* output = new Reserva[this->tamanho];
 
     // Calculamos a frequencia
     for(int i = 0; i < this->tamanho; i++)
@@ -171,6 +171,7 @@ void ArrReservaDinamico::sort()
     {
         this->dados[i] = output[i];
     }
+    delete[] output;
 }
 
 Reserva ArrReservaDinamico::get(int index)
@@ -352,6 +353,9 @@ bool ReservationSystem::reserve(ReservationRequest request)
     int dia_semana = reserva.getNumWeekDay();
     int inicio = reserva.getStartHour();
     int fim = reserva.getEndHour();
+
+    //as aulas vão das 7 as 21
+    if (inicio < 7 || fim > 21) return false;
 
     // en cada sala
     for(int i = 0; i < this->room_count; i++)
